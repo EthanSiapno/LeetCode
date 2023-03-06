@@ -8,9 +8,9 @@ class Solution:
             if nums[m] == target:
                 return m
             elif nums[m] > target:
-                r -= 1
+                r = m - 1
             else:
-                l += 1
+                l = m + 1
             
         return -1
                 
