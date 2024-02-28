@@ -6,5 +6,5 @@ class Solution:
                 numsDict[num] = 1
             else:
                 return True
-                numsDict[num] += 1
+
         return False
