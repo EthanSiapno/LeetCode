@@ -1,30 +1,32 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        numsDict = {}
-        freq = [[] for i in range(len(nums)+1)]
+        countDict = {}
+        countList = []
+        outputList = []
+        highestKey = 0
+        highestVal = 0
         
-        for n in nums:
-            numsDict[n] = 1 + numsDict.get(n, 0)
-        for n, c in numsDict.items():
-            # print([n,c])
-            freq[c].append(n)
-            
-        # print(freq)
+        for num in nums:
+            if countDict.get(num,0) == 0:
+                countDict[num] = 1
+            else:
+                countDict[num] += 1
         
-        output = []
-        for i in range(len(freq) - 1, 0, -1):
-            for n in freq[i]:
-                output.append(n)
-                if len(output) == k:
-                    return output
+        for key in countDict:
+            countList.append(tuple([key, countDict[key]]))
         
-            
-#         for i in nums:
-#             if numsDict.get(i, -1) == -1:
-#                 numsDict[i] = 1
-#             else:
-#                 numsDict[i] += 1
-#         while k != 0:
-            
-#             k -= 1
-#         print(max(numsDict.values()))
+        # print(countList)
+        
+        while k > 0:
+            for pair in countList:
+                if pair[1] > highestVal:
+                    if pair[0] not in outputList:
+                        highestVal = pair[1]
+                        highestKey = pair[0]
+                
+            outputList.append(highestKey)
+            highestKey = 0
+            highestVal = 0
+            k -= 1
+        
+        return outputList
