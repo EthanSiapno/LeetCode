@@ -3,9 +3,6 @@ class Solution:
         l, r = 0, len(height) - 1
         maximum = 0
         temp = 0
-        temp = (r - l) * (min(height[l], height[r]))
-        # print(temp)
-
         
         while l < r:
             temp = (r - l) * (min(height[l], height[r]))
